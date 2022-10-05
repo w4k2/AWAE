@@ -1,3 +1,6 @@
+"""
+Comparison sytnethic MLP
+"""
 import numpy as np
 import strlearn as sl
 import config22 as config

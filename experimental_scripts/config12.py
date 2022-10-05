@@ -1,3 +1,6 @@
+"""
+Hyperparametrization sytnethic MLP
+"""
 import numpy as np
 import strlearn as sl
 import hashlib

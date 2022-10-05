@@ -1,3 +1,6 @@
+"""
+Hyperparametrization sytnethic GNB, HT + BALS
+"""
 import numpy as np
 import strlearn as sl
 import hashlib
@@ -30,7 +33,6 @@ def base_estimators():
     return {
         "GNB": GaussianNB(),
         "HT": HoeffdingTreeClassifier(split_criterion='hellinger'),
-        "MLP": MLPClassifier(random_state=1410),
     }
 
 

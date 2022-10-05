@@ -1,3 +1,6 @@
+"""
+Hyperparametrization sytnethic GNB, HT
+"""
 import numpy as np
 import strlearn as sl
 import config11 as config

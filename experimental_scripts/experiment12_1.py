@@ -1,3 +1,6 @@
+"""
+Hyperparametrization sytnethic MLP + BALS
+"""
 import numpy as np
 import strlearn as sl
 import config12_1 as config

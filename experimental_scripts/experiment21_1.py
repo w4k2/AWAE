@@ -1,7 +1,6 @@
 """
-DD Streams whole GNB, HT
+Comparison DD streams GNB, HT
 """
-
 import numpy as np
 import strlearn as sl
 import config21 as config

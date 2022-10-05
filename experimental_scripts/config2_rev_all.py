@@ -1,5 +1,5 @@
 """
-Comparison GNB, HT
+Comparison GNB, HT, MLP revision
 """
 import numpy as np
 import strlearn as sl
@@ -33,57 +33,27 @@ def base_estimators():
     return {
         "GNB": GaussianNB(),
         "HT": HoeffdingTreeClassifier(split_criterion='hellinger'),
+        "MLP": MLPClassifier(random_state=1410),
     }
 
 
 def methods():
-    from strlearn.ensembles import SEA, AWE, WAE, AUE
+    from strlearn.ensembles import SEA, AWE, WAE, AUE, KUE, ROSE
     from sklearn.naive_bayes import GaussianNB
     from sklearn.tree import DecisionTreeClassifier
     from sklearn.svm import SVC
     from csm import OALE
     from skmultiflow.trees import HoeffdingTreeClassifier
     from skmultiflow.meta import LearnPPNSEClassifier
+    from sklearn.neural_network import MLPClassifier
 
     _methods = [
-        SEA(GaussianNB()),
-        AWE(base_estimator=GaussianNB()),
-        AUE(base_estimator=GaussianNB()),
-        LearnPPNSEClassifier(base_estimator=GaussianNB(), n_estimators=10),
-        OALE(base_estimator=GaussianNB()),
-        WAE(
-        GaussianNB(),
-        post_pruning=True,
-        theta=0.05,
-        weight_calculation_method="kuncheva",
-        aging_method="weights_proportional",
-        ),
-        WAE(
-        GaussianNB(),
-        post_pruning=True,
-        theta=0.05,
-        weight_calculation_method="bell_curve",
-        aging_method="constant",
-        ),
-        SEA(HoeffdingTreeClassifier(split_criterion='hellinger')),
-        AWE(base_estimator=HoeffdingTreeClassifier(split_criterion='hellinger')),
-        AUE(base_estimator=HoeffdingTreeClassifier(split_criterion='hellinger')),
-        LearnPPNSEClassifier(base_estimator=HoeffdingTreeClassifier(split_criterion='hellinger'), n_estimators=10),
-        OALE(base_estimator=HoeffdingTreeClassifier(split_criterion='hellinger')),
-        WAE(
-        HoeffdingTreeClassifier(split_criterion='hellinger'),
-        post_pruning=True,
-        theta=0.05,
-        weight_calculation_method="kuncheva",
-        aging_method="weights_proportional",
-        ),
-        WAE(
-        HoeffdingTreeClassifier(split_criterion='hellinger'),
-        post_pruning=True,
-        theta=0.05,
-        weight_calculation_method="bell_curve",
-        aging_method="constant",
-        ),
+        KUE(GaussianNB()),
+        ROSE(GaussianNB()),
+        KUE(HoeffdingTreeClassifier(split_criterion='hellinger')),
+        ROSE(HoeffdingTreeClassifier(split_criterion='hellinger')),
+        KUE(MLPClassifier(random_state=1410)),
+        ROSE(MLPClassifier(random_state=1410)),
     ]
     return _methods
 

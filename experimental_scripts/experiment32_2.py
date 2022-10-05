@@ -1,5 +1,5 @@
 """
-SS Streams AL MLP
+Comparison SS streams MLP + BALS
 """
 import numpy as np
 import strlearn as sl

@@ -1,15 +1,10 @@
 """
-Comparison sytnethic GNB, HT
+Comparison sytnethic GNB, HT, MLP, revision
 """
 import numpy as np
 import strlearn as sl
-import config21 as config
-from sklearn.base import clone
-from tabulate import tabulate
-import matplotlib.pyplot as plt
-from strlearn.ensembles import WAE
+import config2_rev_all as config
 from strlearn.evaluators import TestThenTrain
-import sys
 import multiprocessing
 
 
@@ -21,7 +16,7 @@ def worker(stream):
     methods = config.methods()
     ttt = TestThenTrain(metrics=list(config.metrics().values()), verbose=False)
     ttt.process(streams[stream], methods)
-    np.save("results/ex21/%s" % stream, ttt.scores)
+    np.save("results/ex2_rev_all/%s" % stream, ttt.scores)
     print("End: %s" % (stream))
 
 jobs = []

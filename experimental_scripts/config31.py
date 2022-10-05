@@ -1,3 +1,6 @@
+"""
+Comparison GNB, HT + BALS
+"""
 import numpy as np
 import strlearn as sl
 import hashlib

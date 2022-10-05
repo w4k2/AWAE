@@ -1,5 +1,5 @@
 """
-DD Streams whole MLP
+Comparison DD streams MLP
 """
 import numpy as np
 import strlearn as sl

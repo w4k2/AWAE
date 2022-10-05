@@ -1,5 +1,5 @@
 """
-SS Streams whole MLP
+Comparison SS streams MLP
 """
 import numpy as np
 import strlearn as sl

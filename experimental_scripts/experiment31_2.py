@@ -1,7 +1,6 @@
 """
-SS Streams AL GNB, HT
+Comparison SS streams GNB, HT + BALS
 """
-
 import numpy as np
 import strlearn as sl
 import config31 as config

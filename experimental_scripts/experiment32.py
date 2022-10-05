@@ -1,3 +1,6 @@
+"""
+Comparison sytnethic MLP + BALS
+"""
 import numpy as np
 import strlearn as sl
 import config32 as config
