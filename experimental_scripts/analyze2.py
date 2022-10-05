@@ -13,8 +13,16 @@ np.set_printoptions(precision=3)
 
 alpha = 0.05
 
-results = np.load("results2.npy")
-optimized = np.load("optimized.npy")
+results = np.load("gathered/results2.npy")
+optimized = np.load("gathered/optimized.npy")
+
+rev_scores = np.load("gathered/results2_rev_all.npy")
+print(results.shape)
+print(rev_scores.shape)
+results = np.concatenate((results, rev_scores), axis=3)
+print(results.shape)
+# exit()
+
 optimized = np.moveaxis(optimized, 0, 1)
 
 """
@@ -34,7 +42,8 @@ results = np.moveaxis(results, 0, 3)
 
 # SEA, WAEdef, AWE, AUE, WAEopt
 results = np.concatenate((results, optimized[:, :, np.newaxis, :]), axis=2)
-
+# withour d WAE
+results = results[:, :, [0,1,2,3,4,5,6,8]]
 """
 # Dimensions are
 # 0 - stream
@@ -45,6 +54,8 @@ results = np.concatenate((results, optimized[:, :, np.newaxis, :]), axis=2)
 
 # Analysis
 met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE"]
+met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE",  "ROSE", "(d) WAE", "(o) WAE"]
+met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE",  "ROSE", "(o) WAE"]
 bases = ["GNB", "HT", "MLP"]
 
 analyze_scores = []
@@ -81,7 +92,7 @@ for i, stream in enumerate(results):
             b = base_estimator[k]
 
             better_then = np.where(tested[k])[0] + 1
-            if met[k] == "AUE":
+            if met[k] == "ROSE":
                 analyze_scores.append(np.mean(method))
                 print(
                     "%.3f" % np.mean(method),
