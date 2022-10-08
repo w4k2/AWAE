@@ -1,5 +1,5 @@
 """
-Comparison sytnethic MLP
+Comparison sytnethic GNB, HT, MLP
 """
 import numpy as np
 import strlearn as sl

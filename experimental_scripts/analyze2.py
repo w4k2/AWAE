@@ -53,8 +53,8 @@ results = results[:, :, [0,1,2,3,4,5,6,8]]
 """
 
 # Analysis
-met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE"]
-met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE",  "ROSE", "(d) WAE", "(o) WAE"]
+# met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE"]
+# met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE",  "ROSE", "(d) WAE", "(o) WAE"]
 met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE",  "ROSE", "(o) WAE"]
 bases = ["GNB", "HT", "MLP"]
 
@@ -92,7 +92,7 @@ for i, stream in enumerate(results):
             b = base_estimator[k]
 
             better_then = np.where(tested[k])[0] + 1
-            if met[k] == "ROSE":
+            if met[k] == "SEA":
                 analyze_scores.append(np.mean(method))
                 print(
                     "%.3f" % np.mean(method),
