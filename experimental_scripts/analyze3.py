@@ -14,7 +14,13 @@ np.set_printoptions(precision=3)
 
 alpha = 0.05
 
-results = np.load("results3.npy")
+results = np.load("gathered/results3.npy")
+rev_scores = np.load("gathered/results3_rev_bals.npy")
+print(results.shape)
+print(rev_scores.shape)
+results = np.concatenate((results, rev_scores), axis=3)
+print(results.shape)
+
 """
 # Dimensions are
 # 0 - replication
@@ -29,6 +35,7 @@ results = np.load("results3.npy")
 results = np.mean(results, axis=(4, 5))
 # stream, replication
 results = np.moveaxis(results, 0, 3)
+print(results.shape)
 
 """
 # Dimensions are
@@ -39,9 +46,13 @@ results = np.moveaxis(results, 0, 3)
 """
 
 # Analysis
-met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE"]
+# met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE"]
+# met = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) WAE", "(o) WAE", "KUE", "ROSE"]
+results = results[:, :, [0,1,2,3,4,7,8,5]]
+met = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE", "ROSE", "(d) WAE"]
 bases = ["GNB", "HT", "MLP"]
-
+# print(results.shape)
+# exit()
 analyze_scores = []
 analyze_stat = []
 
@@ -76,7 +87,7 @@ for i, stream in enumerate(results):
             b = base_estimator[k]
 
             better_then = np.where(tested[k])[0] + 1
-            if met[k] == "SEA":
+            if met[k] == "(d) WAE":
                 analyze_scores.append(np.mean(method))
                 print(
                     "%.3f" % np.mean(method),

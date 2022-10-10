@@ -92,7 +92,7 @@ for i, stream in enumerate(results):
             b = base_estimator[k]
 
             better_then = np.where(tested[k])[0] + 1
-            if met[k] == "SEA":
+            if met[k] == "(o) WAE":
                 analyze_scores.append(np.mean(method))
                 print(
                     "%.3f" % np.mean(method),
