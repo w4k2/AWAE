@@ -13,9 +13,12 @@ from scipy.interpolate import interp1d
 ### E1 get end
 
 np.set_printoptions(precision=3)
-methods = ["SEA", "AWE", "AUE", "NSE", "OALE", "AWAE", "(o) AWAE"]
-colors = ["black", "blue", "blue", "green", "green", "red", "red"]
-lines = ["-", "-", "--", "-", "--", "-", "--"]
+# methods = ["SEA", "AWE", "AUE", "NSE", "OALE", "AWAE", "(o) AWAE", "KUE", "ROSE"]
+# colors = ["black", "blue", "blue", "green", "green", "red", "red", "pink", "pink"]
+# lines = ["-", "-", "--", "-", "--", "-", "--", "-", "--"]
+methods = ["SEA", "AWE", "AUE", "NSE", "OALE", "KUE", "(o) AWAE", "ROSE", "AWAE"]
+colors = ["black", "blue", "blue", "green", "green", "orange", "red", "orange", "red"]
+lines = ["-", "-", "--", "-", "--", "-", "--", "--", "-"]
 base = ["GNB", "HT", "MLP"]
 """
 # Dimensions are
@@ -36,6 +39,9 @@ fig, ax = plt.subplots(len(names), 3,
 
 for id ,name in enumerate(names):
     name_scores = np.squeeze(np.load("results/ex3_2/%s" % name))
+    rev_scores = np.squeeze(np.load("results/ex3_2_rev_bals/%s" % name)).reshape((3,2,name_scores.shape[2]))
+    name_scores = np.concatenate((name_scores, rev_scores), axis=1)
+    name_scores = name_scores[:, [0,1,2,3,4,7,6,8,5]]
     print(name_scores.shape)
     for axis in range(3):
         for method in range(name_scores.shape[1]):
@@ -84,5 +90,5 @@ plt.subplots_adjust(wspace=0, hspace=.75, top=.92)
 
 
 plt.savefig('foo.png')
-plt.savefig("figures/ss_streams_al.eps")
-plt.savefig("figures/ss_streams_al.png")
+plt.savefig("figures/ss_streams_al_rev.eps")
+plt.savefig("figures/ss_streams_al_rev.png")

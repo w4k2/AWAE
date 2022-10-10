@@ -13,10 +13,11 @@ from strlearn.utils import scores_to_cummean
 
 np.set_printoptions(precision=3)
 
-results = np.squeeze(np.load("gathered/results2_1.npy"))
-methods = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) AWAE", "AWAE"]
-colors = ["black", "blue", "blue", "green", "green", "red", "red"]
-lines = ["-", "-", "--", "-", "--", "-", "-"]
+results = np.squeeze(np.load("gathered/results2_1_rev.npy"))
+results = results[:, :, [0,1,2,3,4,5,7,8,6]]
+methods = ["SEA", "AWE", "AUE", "NSE", "OALE", "(d) AWAE", "KUE", "ROSE", "AWAE"]
+colors = ["black", "blue", "blue", "green", "green", "red", "orange", "orange", "red"]
+lines = ["-", "-", "--", "-", "--", "-", "-", "--", "-"]
 base = ["GNB", "HT", "MLP"]
 """
 # Dimensions are
@@ -26,7 +27,6 @@ base = ["GNB", "HT", "MLP"]
 # 3 - chunk
 """
 print(results.shape)
-
 names = os.listdir("./dd_streams")
 names.sort()
 
@@ -75,10 +75,10 @@ for id ,name in enumerate(names):
 
 
 handles, labels = ax[0,0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='upper center', ncol=7, frameon=False)
+fig.legend(handles, labels, loc='upper center', ncol=8, frameon=False)
 plt.tight_layout()
 plt.subplots_adjust(wspace=0, hspace=.5, top=.92)
-plt.savefig("figures/dd_streams/%s.png" % name[:-4], dpi=150)
+plt.savefig("figures/dd_streams/%s_rev.png" % name[:-4], dpi=150)
 plt.savefig('foo.png')
-plt.savefig("figures/dd_streams.eps")
-plt.savefig("figures/dd_streams.png")
+plt.savefig("figures/dd_streams_rev.eps")
+plt.savefig("figures/dd_streams_rev.png")
